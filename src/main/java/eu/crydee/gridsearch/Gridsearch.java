@@ -25,7 +25,7 @@ public class Gridsearch {
      * @param objective whether we should minimize or maximize the objective
      * @return the grid search guess for the parameters
      */
-    static public Double[] estimate(
+    public Double[] estimate(
             Double[] max,
             Double[] min,
             int zones,
@@ -127,7 +127,8 @@ public class Gridsearch {
      * @param args the arguments passed to the main function are ignored
      */
     public static void main(String[] args) {
-        Double[] result = estimate(
+        Gridsearch gridsearch = new Gridsearch();
+        Double[] result = gridsearch.estimate(
                 new Double[]{4d, 5d, 6d},
                 new Double[]{0d, 0d, 0d},
                 10,
