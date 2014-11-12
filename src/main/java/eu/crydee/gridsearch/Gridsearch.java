@@ -25,12 +25,12 @@ public class Gridsearch {
      * @param objective whether we should minimize or maximize the objective
      * @return the grid search guess for the parameters
      */
-    public Double[] estimate(
-            Double[] max,
-            Double[] min,
+    public double[] estimate(
+            double[] max,
+            double[] min,
             int zones,
             int steps,
-            Function<Double[], Double> scorer,
+            Function<double[], Double> scorer,
             Objective objective) {
         if (max == null || min == null) {
             throw new IllegalArgumentException("You have to provide non-null "
@@ -41,11 +41,11 @@ public class Gridsearch {
                     + "of equal lenghts.");
         }
         int l = max.length;
-        Double[] currentSteps = new Double[l],
-                currentMin = new Double[l],
-                currentMax = new Double[l],
-                bestValues = new Double[l],
-                values = new Double[l];
+        double[] currentSteps = new double[l],
+                currentMin = new double[l],
+                currentMax = new double[l],
+                bestValues = new double[l],
+                values = new double[l];
         int[] state = new int[l],
                 maxState = new int[l];
         Arrays.fill(maxState, zones);
@@ -128,9 +128,9 @@ public class Gridsearch {
      */
     public static void main(String[] args) {
         Gridsearch gridsearch = new Gridsearch();
-        Double[] result = gridsearch.estimate(
-                new Double[]{4d, 5d, 6d},
-                new Double[]{0d, 0d, 0d},
+        double[] result = gridsearch.estimate(
+                new double[]{4d, 5d, 6d},
+                new double[]{0d, 0d, 0d},
                 10,
                 3,
                 s -> s[0] - s[1] - Math.pow(s[2] - 2, 2),
