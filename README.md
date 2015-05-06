@@ -1,5 +1,5 @@
-Grid Search
-===================
+Grid Search [![Build Status](https://travis-ci.org/m09/grid-search.svg?branch=master)](https://travis-ci.org/m09/grid-search)
+===
 
 Basic implementation of a grid search with a simple API. Java 8 allows
 a clean specification of the objective function thanks to its
