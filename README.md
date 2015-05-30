@@ -34,7 +34,7 @@ section of your `pom.xml`:
 If you do not use maven, you can still [download][dl] the jar from
 Maven Central and use it as appropriate.
 
-[dl]: http://search.maven.org/remotecontent?filepath=eu/crydee/grid-search/2.1.0/grid-search-2.1.1.jar
+[dl]: http://search.maven.org/remotecontent?filepath=eu/crydee/grid-search/2.1.1/grid-search-2.1.1.jar
 
 Usage
 -----
