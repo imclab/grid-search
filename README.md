@@ -1,6 +1,7 @@
-Grid Search [![Build Status](https://travis-ci.org/m09/grid-search.svg?branch=master)](https://travis-ci.org/m09/grid-search)[![Maven Central version](https://img.shields.io/maven-central/v/eu.crydee/grid-search.svg)](http://search.maven.org/#search|ga|1|a%3A%22grid-search%22) [![Coverage Status](https://coveralls.io/repos/m09/grid-search/badge.svg?branch=master)](https://coveralls.io/r/m09/grid-search?branch=master)
+Grid Search
 ===
-
+[![Build Status](https://travis-ci.org/m09/grid-search.svg?branch=master)](https://travis-ci.org/m09/grid-search) [![Maven Central version](https://img.shields.io/maven-central/v/eu.crydee/grid-search.svg)](http://search.maven.org/#search|ga|1|a%3A%22grid-search%22) [![Coverage Status](https://coveralls.io/repos/m09/grid-search/badge.svg?branch=master)](https://coveralls.io/r/m09/grid-search?branch=master)
+ 
 Basic implementation of a grid search with a simple API. Java 8 allows
 a clean specification of the objective function thanks to its
 lambdas. You should certainly prefer the optimization methods of the
