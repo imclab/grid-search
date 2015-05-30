@@ -7,6 +7,9 @@ lambdas. You should certainly prefer the optimization methods of the
 [Commons Math library][cm] instead of this grid search implementation
 if they can be used.
 
+Common application is for example to go through hyperparameters when
+tuning an algorithm.
+
 [cm]: http://commons.apache.org/proper/commons-math/
 
 Requirements
@@ -24,14 +27,14 @@ section of your `pom.xml`:
     <dependency>
       <groupId>eu.crydee</groupId>
       <artifactId>grid-search</artifactId>
-      <version>2.1.0</version>
+      <version>2.1.1</version>
     </dependency>
 ```
 
 If you do not use maven, you can still [download][dl] the jar from
 Maven Central and use it as appropriate.
 
-[dl]: http://search.maven.org/remotecontent?filepath=eu/crydee/grid-search/2.1.0/grid-search-2.1.0.jar
+[dl]: http://search.maven.org/remotecontent?filepath=eu/crydee/grid-search/2.1.0/grid-search-2.1.1.jar
 
 Usage
 -----
@@ -43,11 +46,11 @@ with a in [0, 4], b in [0, 5] and c in [0, 6], you can use:
 ```java
 Gridsearch gridsearch = new Gridsearch();
 double[] result = gridsearch.estimate(
-    new double[]{4d, 5d, 6d},
-    new double[]{0d, 0d, 0d},
-    10,
-    3,
-    s -> s[0] - s[1] - Math.pow(s[2] - 2, 2),
-    Objective.MAXIMIZE);
-// result holds [4.0, 0.0, 1.992]
+        new double[]{4d, 5d, 6d},
+        new double[]{0d, 0d, 0d},
+        10,
+        3,
+        s -> s[0] - s[1] - Math.pow(s[2] - 2, 2),
+        Objective.MAXIMIZE);
+// result holds something close to [4d, 0d, 2d]
 ```

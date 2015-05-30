@@ -2,7 +2,11 @@ package eu.crydee.gridsearch;
 
 import java.util.Arrays;
 import java.util.function.Function;
-import org.apache.commons.lang3.ArrayUtils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Class to perform a grid search to estimate optimal parameters given an
@@ -12,10 +16,13 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class Gridsearch {
 
+    private final static Logger logger = Logger.getLogger(
+            Gridsearch.class.getName());
+
     /**
      * Entry point. Performs a grid search given the necessary information. See
-     * the main function for a basic example of how to optimize f = aX - bY +
-     * -c(Y - 2)² with a in [0, 4], b in [0, 5] and c in [0, 6]
+     * the README or the unit test for a basic example of how to optimize f = aX
+     * - bY + -c(Y - 2)² with a in [0, 4], b in [0, 5] and c in [0, 6]
      *
      * @param max the maximum of each parameter
      * @param min the minimum of each parameter
@@ -52,13 +59,27 @@ public class Gridsearch {
         System.arraycopy(min, 0, currentMin, 0, l);
         System.arraycopy(max, 0, currentMax, 0, l);
         double bestScore = objective == Objective.MAXIMIZE
-                ? Double.MIN_VALUE
-                : Double.MAX_VALUE;
+                ? Double.NEGATIVE_INFINITY
+                : Double.POSITIVE_INFINITY;
         for (int s = 0; s < steps; s++) {
             // compute our steps
             for (int i = 0; i < l; i++) {
                 currentSteps[i] = (currentMax[i] - currentMin[i]) / zones;
             }
+            logger.log(
+                    Level.INFO,
+                    "State at start of step {0}: {1}",
+                    new Object[]{
+                        s,
+                        IntStream.range(0, l)
+                        .mapToObj(i -> Stream.of(
+                                        currentMin[i],
+                                        currentMax[i],
+                                        currentSteps[i])
+                                .map(d -> Double.toString(d))
+                                .collect(Collectors.joining(", ", "(", ")")))
+                        .collect(Collectors.joining(", ", "[", "]"))
+                    });
             // initial state of the search during this step
             Arrays.fill(state, 0);
             // looping to go through all states to do in this step
@@ -119,22 +140,5 @@ public class Gridsearch {
          * Maximization objective.
          */
         MAXIMIZE
-    }
-
-    /**
-     * Example usage.
-     *
-     * @param args the arguments passed to the main function are ignored
-     */
-    public static void main(String[] args) {
-        Gridsearch gridsearch = new Gridsearch();
-        double[] result = gridsearch.estimate(
-                new double[]{4d, 5d, 6d},
-                new double[]{0d, 0d, 0d},
-                10,
-                3,
-                s -> s[0] - s[1] - Math.pow(s[2] - 2, 2),
-                Objective.MAXIMIZE);
-        System.out.println(ArrayUtils.toString(result));
     }
 }
